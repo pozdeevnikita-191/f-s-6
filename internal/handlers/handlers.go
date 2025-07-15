@@ -64,4 +64,8 @@ func HandleUpload(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Write file error: %v\n", err)
 		http.Error(w, fmt.Sprintf("Failed to write file: %v", err), http.StatusInternalServerError)
 	}
+
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(result))
 }
